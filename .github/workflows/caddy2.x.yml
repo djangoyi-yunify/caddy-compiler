@@ -29,3 +29,10 @@ jobs:
         GOARCH=arm64 GOOS=linux ./xcaddy build v2.8.4 --with github.com/git001/caddyv2-upload --output caddy-arm64
         ls -lh
       working-directory: /tmp
+    - name: release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: |
+          /tmp/caddy-amd64
+          /tmp/caddy-arm64
+        tag_name: redis-${{ inputs.caddyv }}_linux
