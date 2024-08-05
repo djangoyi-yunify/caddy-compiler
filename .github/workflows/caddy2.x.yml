@@ -1,0 +1,25 @@
+name: Compiler workflow for caddy2.x
+on:
+  workflow_dispatch:
+    inputs:
+      caddyv:
+        description: 'caddy version'
+        default: 'v2.8.4'
+        required: false
+        type: string
+      xcaddyv:
+        description: 'xcaddy version'
+        default: '0.4.2'
+        required: false
+        type: string
+
+jobs:
+  compile_release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: download xcaddy
+      run: |
+        wget https://github.com/caddyserver/xcaddy/releases/download/v${{ inputs.xcaddyv }}/xcaddy_${{ inputs.xcaddyv }}_linux_amd64.tar.gz
+        tar -xzf xcaddy_${{ inputs.xcaddyv }}_linux_amd64.tar.gz
+        ls -lh
+      working-directory: /tmp
