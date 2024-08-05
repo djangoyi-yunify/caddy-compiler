@@ -23,3 +23,9 @@ jobs:
         tar -xzf xcaddy_${{ inputs.xcaddyv }}_linux_amd64.tar.gz
         ls -lh
       working-directory: /tmp
+    - name: compile caddy
+      run: |
+        GOARCH=amd64 GOOS=linux ./xcaddy build v2.8.4 --with github.com/git001/caddyv2-upload --output caddy-$GOARCH
+        GOARCH=arm64 GOOS=linux ./xcaddy build v2.8.4 --with github.com/git001/caddyv2-upload --output caddy-$GOARCH
+        ls -lh
+      working-directory: /tmp
