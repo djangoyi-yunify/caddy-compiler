@@ -25,8 +25,8 @@ jobs:
       working-directory: /tmp
     - name: compile caddy
       run: |
-        GOARCH=amd64 GOOS=linux ./xcaddy build v2.8.4 --with github.com/git001/caddyv2-upload --output caddy-amd64
-        GOARCH=arm64 GOOS=linux ./xcaddy build v2.8.4 --with github.com/git001/caddyv2-upload --output caddy-arm64
+        GOARCH=amd64 GOOS=linux ./xcaddy build ${{ inputs.caddyv }} --with github.com/git001/caddyv2-upload --output caddy-amd64
+        GOARCH=arm64 GOOS=linux ./xcaddy build ${{ inputs.caddyv }} --with github.com/git001/caddyv2-upload --output caddy-arm64
         ls -lh
       working-directory: /tmp
     - name: release
@@ -35,4 +35,4 @@ jobs:
         files: |
           /tmp/caddy-amd64
           /tmp/caddy-arm64
-        tag_name: redis-${{ inputs.caddyv }}_linux
+        tag_name: caddy-${{ inputs.caddyv }}_linux
