@@ -4,12 +4,12 @@ on:
     inputs:
       caddyv:
         description: 'caddy version'
-        default: 'v2.8.4'
+        default: 'v2.9.1'
         required: false
         type: string
       xcaddyv:
         description: 'xcaddy version'
-        default: '0.4.2'
+        default: '0.4.4'
         required: false
         type: string
 
